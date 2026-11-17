@@ -1,0 +1,121 @@
+{
+  "consumer": {
+    "name": "almacen-lumen-front"
+  },
+  "interactions": [
+    {
+      "description": "una consulta GET /api/productos",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "hay productos en el catalogo"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/productos"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "productos": [
+              {
+                "categoria": "ceramica",
+                "categoriaNombre": "Cerámica",
+                "id": "cer-01",
+                "nombre": "Tazón de gres en verde salvia",
+                "precio": 340,
+                "stock": 8
+              }
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.productos": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.productos[*].categoria": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.productos[*].categoriaNombre": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.productos[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.productos[*].nombre": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.productos[*].precio": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.productos[*].stock": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "15.0.1"
+    },
+    "pactRust": {
+      "ffi": "0.4.28",
+      "models": "1.3.5"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "almacen-lumen-api"
+  }
+}

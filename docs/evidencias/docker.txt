@@ -1,0 +1,5 @@
+imagen: almacen-lumen:reto5
+id=sha256:9d59eccd55b7a0fdc40a7c447d9cce22cddbbd52b237bd8a620250ee985ed0e0 size=68297107
+contenedor en :4791
+{"status":"ok","servicio":"almacen-lumen","catalogo":24}
+healthy

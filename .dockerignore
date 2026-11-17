@@ -1,0 +1,13 @@
+node_modules
+e2e
+docs
+.git
+.gitignore
+**/__pycache__
+**/.pytest_cache
+**/.venv
+playwright-report
+test-results
+*.log
+pact/logs
+.env

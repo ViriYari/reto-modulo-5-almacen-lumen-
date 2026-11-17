@@ -1,0 +1,183 @@
+# Pipeline del reto. Cada stage es un quality gate: si uno sale distinto de 0,
+# Azure no corre los que dependen de él. El gate de carga está en LoadTest
+# (p95 < 800 ms y error < 1%). Deploy depende de LoadTest: un exit 1 lo detiene.
+trigger:
+  - main
+
+pr:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  PORT: 4789
+  BASE_URL: http://127.0.0.1:4789
+  SLA_P95_MS: 800
+  SLA_ERROR_MAX: 0.01
+  # Vacías a propósito. En Azure se sobreescriben con el variable group nube-qa.
+  SAUCE_USERNAME: ""
+  SAUCE_ACCESS_KEY: ""
+  SAUCE_REGION: us-west-1
+  ACR_NAME: ""
+
+stages:
+  - stage: Build
+    displayName: Build y datos reproducibles
+    jobs:
+      - job: build
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "22.x"
+          - script: npm ci
+            displayName: Instalar dependencias
+          - script: node datos/generar-datos.js
+            displayName: Regenerar catálogo con semilla fija
+          - script: node --test test/*.test.js
+            displayName: Pruebas unitarias de datos y pedidos
+          - script: docker build -t almacen-lumen:$(Build.BuildId) .
+            displayName: Construir imagen
+
+  - stage: SmokeTests
+    displayName: Smoke — la app encendió
+    dependsOn: Build
+    jobs:
+      - job: smoke
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "22.x"
+          - script: npm ci
+          - script: node datos/generar-datos.js
+          - script: node app-tienda/server.js > server.log 2>&1 & echo $! > server.pid
+            displayName: Encender la tienda
+          - script: node pipeline/wait-health.js
+            displayName: Esperar /api/health
+          - script: node pipeline/smoke-test.js
+            displayName: "Gate smoke: health, catálogo y pedido"
+          - script: kill $(cat server.pid) || true
+            condition: always()
+
+  - stage: LoadTest
+    displayName: "Gate de carga (p95 < 800 ms, error < 1%)"
+    dependsOn: SmokeTests
+    jobs:
+      - job: load
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "22.x"
+          - script: npm ci
+          - script: node datos/generar-datos.js
+          - script: node app-tienda/server.js > server.log 2>&1 & echo $! > server.pid
+          - script: node pipeline/wait-health.js
+          - script: node pipeline/load-test.js
+            displayName: "Quality gate de carga. exit 1 detiene el deploy."
+            env:
+              SLA_P95_MS: $(SLA_P95_MS)
+              SLA_ERROR_MAX: $(SLA_ERROR_MAX)
+          - script: kill $(cat server.pid) || true
+            condition: always()
+
+  - stage: E2E
+    displayName: Screenplay + pytest-bdd
+    dependsOn: SmokeTests
+    jobs:
+      - job: e2e
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "22.x"
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.11"
+          - script: npm ci
+          - script: node datos/generar-datos.js
+          - script: python -m pip install -r e2e/requirements.txt
+          - script: python -m playwright install --with-deps chromium
+          - script: node app-tienda/server.js > server.log 2>&1 & echo $! > server.pid
+          - script: node pipeline/wait-health.js
+          - script: pytest e2e --junitxml=e2e/reports/junit.xml
+            displayName: Escenarios Gherkin
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: e2e/reports/junit.xml
+              testRunTitle: Almacén Lumen — casos de Test Plans
+          - script: python pipeline/publicar-resultados.py
+            condition: succeededOrFailed()
+            displayName: Mapa de casos hacia Azure Test Plans
+          - script: kill $(cat server.pid) || true
+            condition: always()
+
+  - stage: Contract
+    displayName: Pact GET /api/productos
+    dependsOn: Build
+    jobs:
+      - job: pact
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "22.x"
+          - script: npm ci
+          - script: node pact/consumer.test.js
+            displayName: Consumer genera el pact
+          - script: node datos/generar-datos.js
+          - script: node app-tienda/server.js > server.log 2>&1 & echo $! > server.pid
+          - script: node pipeline/wait-health.js
+          - script: node pact/provider.verify.js
+            displayName: Provider verifica el pact
+          - script: kill $(cat server.pid) || true
+            condition: always()
+
+  - stage: CloudTests
+    displayName: Sauce Labs (o demo guiada)
+    dependsOn: E2E
+    jobs:
+      - job: sauce
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.11"
+          - script: python -m pip install -r e2e/requirements.txt
+          - script: python e2e/comprobar_nube.py
+            displayName: Validar capabilities
+          - script: |
+              set -euo pipefail
+              if [ -z "${SAUCE_USERNAME}" ] || [ -z "${SAUCE_ACCESS_KEY}" ]; then
+                echo "##[warning]Sin credenciales de Sauce Labs. La etapa queda como demo guiada."
+                exit 0
+              fi
+              python -m playwright install chromium
+              pytest e2e
+            displayName: Ejecutar en Sauce Labs si hay credenciales
+            env:
+              SAUCE_USERNAME: $(SAUCE_USERNAME)
+              SAUCE_ACCESS_KEY: $(SAUCE_ACCESS_KEY)
+              SAUCE_REGION: $(SAUCE_REGION)
+              BASE_URL: $(BASE_URL)
+
+  - stage: Deploy
+    displayName: Publicar imagen (se detiene si un gate falló)
+    dependsOn:
+      - LoadTest
+      - E2E
+      - Contract
+      - CloudTests
+    condition: succeeded()
+    jobs:
+      - job: acr
+        steps:
+          - script: |
+              set -euo pipefail
+              echo "Gates en verde. LoadTest autorizó este stage."
+              if [ -z "${ACR_NAME}" ]; then
+                echo "##[warning]Sin ACR_NAME. Demo guiada: aquí iría az acr build --registry <acr> --image almacen-lumen:$(Build.BuildId) ."
+                exit 0
+              fi
+              az acr build --registry "$ACR_NAME" --image "almacen-lumen:$(Build.BuildId)" .
+            displayName: Azure Container Registry
+            env:
+              ACR_NAME: $(ACR_NAME)

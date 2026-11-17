@@ -1,0 +1,10 @@
+{
+  "browserName": "chromium",
+  "browserVersion": "latest",
+  "platformName": "Windows 11",
+  "sauce:options": {
+    "name": "Almacén Lumen — catálogo, carrito y pedidos",
+    "build": "reto-modulo-5",
+    "screenResolution": "1920x1080"
+  }
+}

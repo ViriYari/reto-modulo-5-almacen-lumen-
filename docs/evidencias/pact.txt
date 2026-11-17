@@ -1,0 +1,30 @@
+[18:33:41.165] INFO (4096): pact@15.0.1: Verifying provider
+[18:33:41.175] INFO (4096): pact-core@16.1.1: Verifying Pacts.
+[18:33:41.176] INFO (4096): pact-core@16.1.1: Verifying Pact Files
+[18:33:41.180] INFO (4096): 0.4.28: pact native library successfully found, and the correct version
+2026-11-17T18:33:41.187242Z  INFO ThreadId(05) pact_verifier: Running setup provider state change handler 'hay productos en el catalogo' for 'una consulta GET /api/productos'
+2026-11-17T18:33:41.205627Z  INFO ThreadId(05) pact_verifier: Running provider verification for 'una consulta GET /api/productos'
+2026-11-17T18:33:41.205692Z  INFO ThreadId(05) pact_verifier::provider_client: Sending request to provider at http://127.0.0.1:41775/
+2026-11-17T18:33:41.205695Z  INFO ThreadId(05) pact_verifier::provider_client: Sending request HTTP Request ( method: GET, path: /api/productos, query: None, headers: None, body: Missing )
+2026-11-17T18:33:41.210884Z  INFO ThreadId(05) pact_verifier::provider_client: Received response: HTTP Response ( status: 200, headers: Some({"content-type": ["application/json; charset=utf-8"], "cache-control": ["no-store"], "date": ["Tue, 17 Nov 2026 18:33:41 GMT"], "connection": ["close"], "transfer-encoding": ["chunked"], "x-powered-by": ["Express"]}), body: Present(4819 bytes, application/json;charset=utf-8) )
+2026-11-17T18:33:41.212790Z  INFO ThreadId(05) pact_verifier: Running teardown provider state change handler 'hay productos en el catalogo' for 'una consulta GET /api/productos'
+2026-11-17T18:33:41.216569Z  WARN ThreadId(05) pact_matching::metrics: 
+
+Please note:
+We are tracking events anonymously to gather important usage statistics like Pact version and operating system. To disable tracking, set the 'PACT_DO_NOT_TRACK' environment variable to 'true'.
+
+
+
+Verifying a pact between [1malmacen-lumen-front[0m and [1malmacen-lumen-api[0m
+
+  una consulta GET /api/productos (0s loading, 32ms verification)
+     Given hay productos en el catalogo
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+
+[18:33:41.272] INFO (4096): pact-core@16.1.1: Verification successful
+PACT PROVIDER VERDE

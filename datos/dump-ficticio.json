@@ -1,0 +1,54 @@
+{
+  "aviso": "Volcado ficticio de producción. Los nombres, correos y teléfonos no corresponden a personas reales. El generador los anonimiza antes de escribir db.json.",
+  "origen": "crm-inventado",
+  "clientes": [
+    {
+      "id": "cli-01",
+      "nombre": "Mariana Solís Prado",
+      "correo": "mariana.solis@ejemplo-ficticio.test",
+      "telefono": "5512345678",
+      "calle": "Avenida Imaginaria 120",
+      "ciudad": "Puebla"
+    },
+    {
+      "id": "cli-02",
+      "nombre": "Héctor Nava Quirós",
+      "correo": "hector.nava@ejemplo-ficticio.test",
+      "telefono": "3310987654",
+      "calle": "Calle de los Oficios 44",
+      "ciudad": "Guadalajara"
+    },
+    {
+      "id": "cli-03",
+      "nombre": "Regina Duque Beltrán",
+      "correo": "regina.duque@ejemplo-ficticio.test",
+      "telefono": "8188776655",
+      "calle": "Privada del Barro 9",
+      "ciudad": "Monterrey"
+    },
+    {
+      "id": "cli-04",
+      "nombre": "Omar Ibarra Celis",
+      "correo": "omar.ibarra@ejemplo-ficticio.test",
+      "telefono": "9512233445",
+      "calle": "Andador del Taller 3",
+      "ciudad": "Oaxaca"
+    },
+    {
+      "id": "cli-05",
+      "nombre": "Lucía Poot Chan",
+      "correo": "lucia.poot@ejemplo-ficticio.test",
+      "telefono": "9991122334",
+      "calle": "Calle del Cedro 18",
+      "ciudad": "Mérida"
+    },
+    {
+      "id": "cli-06",
+      "nombre": "Tomás Rangel Ojeda",
+      "correo": "tomas.rangel@ejemplo-ficticio.test",
+      "telefono": "4776655443",
+      "calle": "Boulevard Norte 210",
+      "ciudad": "León"
+    }
+  ]
+}

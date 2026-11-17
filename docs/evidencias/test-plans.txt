@@ -1,0 +1,9 @@
+Casos manuales de Azure Test Plans y su escenario automatizado:
+- TC-CAT-01 Catálogo visible          -> El catálogo muestra el inventario generado
+- TC-CAT-02 Filtro por categoría      -> Filtrar el catálogo por una categoría
+- TC-CAR-01 Agregar al carrito        -> Agregar un producto disponible al carrito
+- TC-PED-01 Confirmar pedido          -> Confirmar un pedido con el carrito
+- TC-BOR-01 Stock insuficiente (IA)   -> No se puede agregar más piezas que el stock
+- TC-BOR-02 Carrito vacío (IA)        -> No se confirma un pedido con el carrito vacío
+El JUnit de pytest (e2e/reports/junit.xml) usa el nombre del escenario,
+así que el resultado se puede asociar al caso por ese título.

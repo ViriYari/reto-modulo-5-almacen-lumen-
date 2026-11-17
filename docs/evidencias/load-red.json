@@ -1,0 +1,10 @@
+{
+  "base": "http://127.0.0.1:4789",
+  "requests": 108062,
+  "errors": 0,
+  "errorRate": 0,
+  "p95Ms": 1.37,
+  "slaP95Ms": 1,
+  "slaErrorMax": 0.01,
+  "passed": false
+}

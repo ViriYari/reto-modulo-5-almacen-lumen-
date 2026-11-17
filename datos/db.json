@@ -1,0 +1,342 @@
+{
+  "semilla": 20261117,
+  "moneda": "MXN",
+  "categorias": [
+    {
+      "id": "ceramica",
+      "nombre": "Cerámica",
+      "productos": 6
+    },
+    {
+      "id": "textil",
+      "nombre": "Textil",
+      "productos": 6
+    },
+    {
+      "id": "iluminacion",
+      "nombre": "Iluminación",
+      "productos": 6
+    },
+    {
+      "id": "escritorio",
+      "nombre": "Escritorio",
+      "productos": 6
+    }
+  ],
+  "productos": [
+    {
+      "id": "cer-01",
+      "sku": "CER-01",
+      "nombre": "Tazón de gres en verde salvia",
+      "detalle": "Para el café de la mañana.",
+      "precio": 800,
+      "moneda": "MXN",
+      "stock": 13,
+      "categoria": "ceramica",
+      "categoriaNombre": "Cerámica"
+    },
+    {
+      "id": "cer-02",
+      "sku": "CER-02",
+      "nombre": "Plato hondo en arena",
+      "detalle": "Caldo, pasta o fruta.",
+      "precio": 450,
+      "moneda": "MXN",
+      "stock": 19,
+      "categoria": "ceramica",
+      "categoriaNombre": "Cerámica"
+    },
+    {
+      "id": "cer-03",
+      "sku": "CER-03",
+      "nombre": "Jarra de agua en blanco roto",
+      "detalle": "Un litro, para la mesa.",
+      "precio": 740,
+      "moneda": "MXN",
+      "stock": 9,
+      "categoria": "ceramica",
+      "categoriaNombre": "Cerámica"
+    },
+    {
+      "id": "cer-04",
+      "sku": "CER-04",
+      "nombre": "Taza de gres en azul mineral",
+      "detalle": "Asa cómoda y boca ancha.",
+      "precio": 620,
+      "moneda": "MXN",
+      "stock": 24,
+      "categoria": "ceramica",
+      "categoriaNombre": "Cerámica"
+    },
+    {
+      "id": "cer-05",
+      "sku": "CER-05",
+      "nombre": "Cuenco en terracota",
+      "detalle": "Ensalada o fruta de temporada.",
+      "precio": 430,
+      "moneda": "MXN",
+      "stock": 15,
+      "categoria": "ceramica",
+      "categoriaNombre": "Cerámica"
+    },
+    {
+      "id": "cer-06",
+      "sku": "CER-06",
+      "nombre": "Florero de cuello estrecho en ceniza",
+      "detalle": "Para una sola rama.",
+      "precio": 670,
+      "moneda": "MXN",
+      "stock": 28,
+      "categoria": "ceramica",
+      "categoriaNombre": "Cerámica"
+    },
+    {
+      "id": "tex-01",
+      "sku": "TEX-01",
+      "nombre": "Manta de lana en crudo",
+      "detalle": "Liviana, para el sofá.",
+      "precio": 350,
+      "moneda": "MXN",
+      "stock": 27,
+      "categoria": "textil",
+      "categoriaNombre": "Textil"
+    },
+    {
+      "id": "tex-02",
+      "sku": "TEX-02",
+      "nombre": "Cojín de lino en índigo",
+      "detalle": "Funda lavable, relleno aparte.",
+      "precio": 760,
+      "moneda": "MXN",
+      "stock": 29,
+      "categoria": "textil",
+      "categoriaNombre": "Textil"
+    },
+    {
+      "id": "tex-03",
+      "sku": "TEX-03",
+      "nombre": "Camino de mesa en raya fina",
+      "detalle": "Largo de 180 cm.",
+      "precio": 960,
+      "moneda": "MXN",
+      "stock": 30,
+      "categoria": "textil",
+      "categoriaNombre": "Textil"
+    },
+    {
+      "id": "tex-04",
+      "sku": "TEX-04",
+      "nombre": "Funda de cojín en óxido",
+      "detalle": "Cierre oculto.",
+      "precio": 1280,
+      "moneda": "MXN",
+      "stock": 24,
+      "categoria": "textil",
+      "categoriaNombre": "Textil"
+    },
+    {
+      "id": "tex-05",
+      "sku": "TEX-05",
+      "nombre": "Tapete de algodón en musgo",
+      "detalle": "Para la entrada o el baño.",
+      "precio": 1140,
+      "moneda": "MXN",
+      "stock": 29,
+      "categoria": "textil",
+      "categoriaNombre": "Textil"
+    },
+    {
+      "id": "tex-06",
+      "sku": "TEX-06",
+      "nombre": "Cortina ligera en avena",
+      "detalle": "Deja pasar la luz de la tarde.",
+      "precio": 1350,
+      "moneda": "MXN",
+      "stock": 18,
+      "categoria": "textil",
+      "categoriaNombre": "Textil"
+    },
+    {
+      "id": "ilu-01",
+      "sku": "ILU-01",
+      "nombre": "Lámpara de mesa de latón",
+      "detalle": "Luz cálida, pantalla incluida.",
+      "precio": 1190,
+      "moneda": "MXN",
+      "stock": 17,
+      "categoria": "iluminacion",
+      "categoriaNombre": "Iluminación"
+    },
+    {
+      "id": "ilu-02",
+      "sku": "ILU-02",
+      "nombre": "Lámpara de pie de negro mate",
+      "detalle": "Brazo fijo, para leer.",
+      "precio": 1400,
+      "moneda": "MXN",
+      "stock": 24,
+      "categoria": "iluminacion",
+      "categoriaNombre": "Iluminación"
+    },
+    {
+      "id": "ilu-03",
+      "sku": "ILU-03",
+      "nombre": "Foco decorativo de roble",
+      "detalle": "LED, base E27.",
+      "precio": 1730,
+      "moneda": "MXN",
+      "stock": 16,
+      "categoria": "iluminacion",
+      "categoriaNombre": "Iluminación"
+    },
+    {
+      "id": "ilu-04",
+      "sku": "ILU-04",
+      "nombre": "Candelero de cerámica blanca",
+      "detalle": "Para una vela de 2 cm.",
+      "precio": 1530,
+      "moneda": "MXN",
+      "stock": 29,
+      "categoria": "iluminacion",
+      "categoriaNombre": "Iluminación"
+    },
+    {
+      "id": "ilu-05",
+      "sku": "ILU-05",
+      "nombre": "Pantalla de lino de acero",
+      "detalle": "Reemplazo para portalámparas.",
+      "precio": 790,
+      "moneda": "MXN",
+      "stock": 23,
+      "categoria": "iluminacion",
+      "categoriaNombre": "Iluminación"
+    },
+    {
+      "id": "ilu-06",
+      "sku": "ILU-06",
+      "nombre": "Lámpara de muro de lino natural",
+      "detalle": "Lectura de cabecera.",
+      "precio": 1590,
+      "moneda": "MXN",
+      "stock": 30,
+      "categoria": "iluminacion",
+      "categoriaNombre": "Iluminación"
+    },
+    {
+      "id": "esc-01",
+      "sku": "ESC-01",
+      "nombre": "Portalápices de fresno",
+      "detalle": "Cabe un puñado de lápices.",
+      "precio": 490,
+      "moneda": "MXN",
+      "stock": 16,
+      "categoria": "escritorio",
+      "categoriaNombre": "Escritorio"
+    },
+    {
+      "id": "esc-02",
+      "sku": "ESC-02",
+      "nombre": "Charola de documentos de nogal",
+      "detalle": "Dos niveles, carta y oficio.",
+      "precio": 200,
+      "moneda": "MXN",
+      "stock": 12,
+      "categoria": "escritorio",
+      "categoriaNombre": "Escritorio"
+    },
+    {
+      "id": "esc-03",
+      "sku": "ESC-03",
+      "nombre": "Reloj de escritorio de cartón piedra",
+      "detalle": "Sin alarma, solo la hora.",
+      "precio": 350,
+      "moneda": "MXN",
+      "stock": 11,
+      "categoria": "escritorio",
+      "categoriaNombre": "Escritorio"
+    },
+    {
+      "id": "esc-04",
+      "sku": "ESC-04",
+      "nombre": "Libreta de lino de fieltro",
+      "detalle": "96 hojas, rayadas.",
+      "precio": 450,
+      "moneda": "MXN",
+      "stock": 13,
+      "categoria": "escritorio",
+      "categoriaNombre": "Escritorio"
+    },
+    {
+      "id": "esc-05",
+      "sku": "ESC-05",
+      "nombre": "Soporte para laptop de aluminio",
+      "detalle": "Inclinación fija.",
+      "precio": 490,
+      "moneda": "MXN",
+      "stock": 1,
+      "categoria": "escritorio",
+      "categoriaNombre": "Escritorio"
+    },
+    {
+      "id": "esc-06",
+      "sku": "ESC-06",
+      "nombre": "Organizador de cables de lino",
+      "detalle": "Para el escritorio compartido.",
+      "precio": 440,
+      "moneda": "MXN",
+      "stock": 0,
+      "categoria": "escritorio",
+      "categoriaNombre": "Escritorio"
+    }
+  ],
+  "clientes": [
+    {
+      "id": "cli-01",
+      "nombre": "M*** S*** P***",
+      "correo": "m***@ejemplo-ficticio.test",
+      "telefono": "***5678",
+      "calle": "Calle ***",
+      "ciudad": "Puebla"
+    },
+    {
+      "id": "cli-02",
+      "nombre": "H*** N*** Q***",
+      "correo": "h***@ejemplo-ficticio.test",
+      "telefono": "***7654",
+      "calle": "Calle ***",
+      "ciudad": "Guadalajara"
+    },
+    {
+      "id": "cli-03",
+      "nombre": "R*** D*** B***",
+      "correo": "r***@ejemplo-ficticio.test",
+      "telefono": "***6655",
+      "calle": "Calle ***",
+      "ciudad": "Monterrey"
+    },
+    {
+      "id": "cli-04",
+      "nombre": "O*** I*** C***",
+      "correo": "o***@ejemplo-ficticio.test",
+      "telefono": "***3445",
+      "calle": "Calle ***",
+      "ciudad": "Oaxaca"
+    },
+    {
+      "id": "cli-05",
+      "nombre": "L*** P*** C***",
+      "correo": "l***@ejemplo-ficticio.test",
+      "telefono": "***2334",
+      "calle": "Calle ***",
+      "ciudad": "Mérida"
+    },
+    {
+      "id": "cli-06",
+      "nombre": "T*** R*** O***",
+      "correo": "t***@ejemplo-ficticio.test",
+      "telefono": "***5443",
+      "calle": "Calle ***",
+      "ciudad": "León"
+    }
+  ]
+}
